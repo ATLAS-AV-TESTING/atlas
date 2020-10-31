@@ -357,7 +357,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Wrong Yielding Actions</h5>
+                <h5 class="mt-0">Incorrect Prediction</h5>
                 <p>Apollo sometimes cannot predict the motion of NPC vehicles accurately,
                     resulting in no sufficient distance to take safe actions.
                     For example, due to the short prediction duration or prediction of low-speed vehicles as static ones,
@@ -372,7 +372,10 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Obstacle Failure</h5>
-                <p>lala</p>
+                <p>the simulator cannot simulate NPC vehicles' motion after an accident.
+                    When two NPC vehicles cause a collision, they may skid everywhere disorderly.
+                    Hence, they may block, even collide with, the motion of the ego vehicle.
+                    However, this should not be the responsibility of Apollo.</p>
             </div>
         </div>
     </section>
