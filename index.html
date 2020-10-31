@@ -286,7 +286,8 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Wrong yielding actions</h5>
-                <p>lala</p>
+                <p>When the ego vehicle detects an NPC vehicle, Apollo decides to yield to it and results in a collision.
+                    It  can  cross  the  junction  safely  by  keeping its current speed or overtaking.</p>
             </div>
         </div>
         <div class="media">
@@ -296,7 +297,9 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Wrong overtaking</h5>
-                <p>lala</p>
+                <p>When the ego vehicle detects an NPC vehicle whose speed is slower,
+                    Apollo decides to overtake the NPC vehicle and results in a collision.
+                    It is safe if the ego vehicle yields to the NPC vehicle.</p>
             </div>
         </div>
         <div class="media">
@@ -306,7 +309,9 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Wrong switch from yielding to overtaking</h5>
-                <p>lala</p>
+                <p>During the collision avoidance, the ego vehicle first yields to the NPC successfully.
+                    However, Apollo starts to overtake before the NPC vehicle passes the collision region,
+                    resulting in a collision.</p>
             </div>
         </div>
         <div class="media">
@@ -316,7 +321,10 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Emergency braking too soft</h5>
-                <p>lala</p>
+                <p>In some emergencies, for example, when an NPC cuts in,
+                    and the ego vehicle cannot overtake since another NPC is ahead,
+                    Apollo still generates a gentle brake, rather than emergency braking.
+                    If Apollo took complete braking, the ego vehicle would stop before causing a collision.</p>
             </div>
         </div>
         <div class="media">
@@ -326,7 +334,8 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Lack of coordinated collision avoidance</h5>
-                <p>lala</p>
+                <p>Apollo performs collision avoidance with each NPC vehicle independently,
+                    so the ego vehicle may cause a deadlock with other vehicles or block the motion of other NPC vehicles. </p>
             </div>
         </div>
         <div class="media">
@@ -336,7 +345,10 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Decision conflicts</h5>
-                <p>lala</p>
+                <p>Apollo determines to slow down the ego vehicle to arrive at the destination or follow the vehicle ahead;
+                    meanwhile, Apollo needs to perform overtaking to avoid cut-in collisions.
+                    In this case, the ego vehicle finally slows down its motion and causes a crash.
+                </p>
             </div>
         </div>
         <div class="media">
@@ -346,7 +358,11 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">Wrong Yielding Actions</h5>
-                <p>lala</p>
+                <p>Apollo sometimes cannot predict the motion of NPC vehicles accurately,
+                    resulting in no sufficient distance to take safe actions.
+                    For example, due to the short prediction duration or prediction of low-speed vehicles as static ones,
+                    Apollo cannot detect collision in time, resulting in a short distance to take collision avoidance actions.
+                </p>
             </div>
         </div>
         <div class="media">
