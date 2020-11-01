@@ -277,7 +277,13 @@
 
     <section class="container">
         <div class="row">
-            <h2>ISSUES DISCOVERED</h2>
+            <div class="col">
+                <h2>ISSUES DISCOVERED</h2>
+                <p>Note that when Apollo's bounding box (not 3D model) intersects with any obstacle's bounding box, a <b>collision</b> occurs.
+                    <br>The bounding box is a bit larger than Apollo's 3D model showing in the video (i.e. Apollo's website-based human machine interface).
+                    <br>As a result, <b>collision</b> may trigger even when there is gap between Apollo's 3D model and obstacle's bounding box.
+                </p>
+            </div>
         </div>
         <div class="media">
             <video width="50%" controls class="align-self-center mr-3">
@@ -288,6 +294,8 @@
                 <h5 class="mt-0">Wrong yielding actions</h5>
                 <p>When the ego vehicle detects an NPC vehicle, Apollo decides to yield to it and results in a collision.
                     It  can  cross  the  junction  safely  by  keeping its current speed or overtaking.</p>
+                <p>In the video, Apollo could have completed the turning smoothly by maintaining its speed.
+                However, it performed an yield when it saw obstacle 5 approaching. This leads to a collision eventually.</p>
             </div>
         </div>
         <div class="media">
@@ -300,6 +308,7 @@
                 <p>When the ego vehicle detects an NPC vehicle whose speed is slower,
                     Apollo decides to overtake the NPC vehicle and results in a collision.
                     It is safe if the ego vehicle yields to the NPC vehicle.</p>
+                <p>In the video, Apollo should have yield to the obstacle 1 crossing from left to avoid the collision.</p>
             </div>
         </div>
         <div class="media">
@@ -312,6 +321,8 @@
                 <p>During the collision avoidance, the ego vehicle first yields to the NPC successfully.
                     However, Apollo starts to overtake before the NPC vehicle passes the collision region,
                     resulting in a collision.</p>
+                <p>In the video, Apollo first yielded to obstacle 4;
+                    However, it switched to the "<b>overtake</b>" decision and accelerated, which led to collision eventually.</p>
             </div>
         </div>
         <div class="media">
@@ -325,6 +336,11 @@
                     and the ego vehicle cannot overtake since another NPC is ahead,
                     Apollo still generates a gentle brake, rather than emergency braking.
                     If Apollo took complete braking, the ego vehicle would stop before causing a collision.</p>
+                <p>In the video, Apollo started to brake upon seeing the traffic moves.
+                    If it braked with full braking power, i.e. 100%, it could have stopped at 5 seconds' location (where its planned trajectory ended)
+                    ,without blocking obstacle 2's path.
+                However, the braking power reached a maximum of only 50% (see top right corner) at about 4 seconds.
+                This resulted in Apollo rushing into the traffic flow and collided with obstacle 2.</p>
             </div>
         </div>
         <div class="media">
@@ -336,6 +352,12 @@
                 <h5 class="mt-0">Lack of coordinated collision avoidance</h5>
                 <p>Apollo performs collision avoidance with each NPC vehicle independently,
                     so the ego vehicle may cause a deadlock with other vehicles or block the motion of other NPC vehicles. </p>
+                <p>In the video at 2 seconds, the decision was "<b>overtake</b>" for obstacle 2 (which makes Apollo accelerate)
+                    and "<b>follow behind</b>" for obstacle 3 (which makes Apollo decelerate).
+                    This made Apollo irresolute whose control output switched between accelerating and braking from 2 seconds to 4 seconds,
+                    and eventually Apollo drove into obstacle 2's path and collided with it.</p>
+                <p>If Apollo has coordinated or fused decisions across multiple obstacles, it could have made the "<b>yield</b>" decision to obstacle 2,
+                    considering the obstacle 3 was in front, and the collision could have been avoided.</p>
             </div>
         </div>
         <div class="media">
@@ -346,9 +368,10 @@
             <div class="media-body">
                 <h5 class="mt-0">Decision conflicts</h5>
                 <p>Apollo determines to slow down the ego vehicle to arrive at the destination or follow the vehicle ahead;
-                    meanwhile, Apollo needs to perform overtaking to avoid cut-in collisions.
+                    Meanwhile, Apollo needs to perform overtaking to avoid cut-in collisions.
                     In this case, the ego vehicle finally slows down its motion and causes a crash.
                 </p>
+                <p></p>
             </div>
         </div>
         <div class="media">
