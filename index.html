@@ -309,7 +309,7 @@
                 </div>
             </div>
             <div class="media-body">
-                <h5 class="mt-0">Wrong yielding actions</h5>
+                <h5 class="mt-0">A. wrong yielding actions</h5>
                 <p>When the ego vehicle detects an NPC vehicle, Apollo decides to yield to it and results in a collision.
                     It  can  cross  the  junction  safely  by  keeping its current speed or overtaking.</p>
                 <p>In the video, Apollo could have completed the turning smoothly by maintaining its speed.
@@ -327,7 +327,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Wrong overtaking</h5>
+                <h5 class="mt-0">B. wrong overtaking</h5>
                 <p>When the ego vehicle detects an NPC vehicle whose speed is slower,
                     Apollo decides to overtake the NPC vehicle and results in a collision.
                     It is safe if the ego vehicle yields to the NPC vehicle.</p>
@@ -340,7 +340,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Wrong switch from yielding to overtaking</h5>
+                <h5 class="mt-0">C. wrong switch from yielding to overtaking</h5>
                 <p>During the collision avoidance, the ego vehicle first yields to the NPC successfully.
                     However, Apollo starts to overtake before the NPC vehicle passes the collision region,
                     resulting in a collision.</p>
@@ -354,7 +354,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Emergency braking too soft</h5>
+                <h5 class="mt-0">D. emergency braking too soft</h5>
                 <p>In some emergencies, for example, when an NPC cuts in,
                     and the ego vehicle cannot overtake since another NPC is ahead,
                     Apollo still generates a gentle brake, rather than emergency braking.
@@ -390,7 +390,7 @@
                 </div>
             </div>
             <div class="media-body">
-                <h5 class="mt-0">Lack of coordinated collision avoidance</h5>
+                <h5 class="mt-0">E. lack of coordinated collision avoidance</h5>
                 <p>Apollo performs collision avoidance with each NPC vehicle independently,
                     so the ego vehicle may cause a deadlock with other vehicles or block the motion of other NPC vehicles. </p>
                 <p>In the video at 2 seconds, the decision was "<b>overtake</b>" for obstacle 2 (which makes Apollo accelerate)
@@ -430,7 +430,7 @@
                 </div>
             </div>
             <div class="media-body">
-                <h5 class="mt-0">Decision conflicts</h5>
+                <h5 class="mt-0">F. decision conflicts</h5>
                 <p>Apollo determines to slow down the ego vehicle to arrive at the destination or follow the vehicle ahead;
                     Meanwhile, Apollo needs to perform overtaking to avoid cut-in collisions.
                     In this case, the ego vehicle finally slows down its motion and causes a crash.
@@ -455,7 +455,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Incorrect Prediction</h5>
+                <h5 class="mt-0">G. incorrect Prediction</h5>
                 <p>Apollo sometimes cannot predict the motion of NPC vehicles accurately,
                     resulting in no sufficient distance to take safe actions.
                     For example, due to the short prediction duration or prediction of low-speed vehicles as static ones,
@@ -475,7 +475,7 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">Obstacle Failure</h5>
+                <h5 class="mt-0">H. obstacle Failure</h5>
                 <p>the simulator cannot simulate NPC vehicles' motion after an accident.
                     When two NPC vehicles cause a collision, they may skid everywhere disorderly.
                     Hence, they may block, even collide with, the motion of the ego vehicle.
