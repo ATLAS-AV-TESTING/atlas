@@ -54,3 +54,12 @@
 .media {
     margin: 1rem;
 }
+
+.ts {
+    color:#007bff;
+}
+
+.ts:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
