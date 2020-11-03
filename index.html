@@ -317,13 +317,13 @@
                 <p>
                     At around <i class="ts" data-target="wrong-yield-video" data-value="16.8">16s</i>, the ego vehicle detects and decides to yield to an NPC vehicle even though
                     it can pass through the collision region very soon.
-                    Hence, the ego vehicle first stops completely and then restarts its motion (<i class="ts" data-target="wrong-yield-video" data-value="18">18s</i>).
+                    Hence, the ego vehicle first stops completely and then restarts its motion (<i class="ts" data-target="wrong-yield-video" data-value="19.8">19s</i>).
                     Finally, the ego vehicle and the NPC vehicle cause a collision (<i class="ts" data-target="wrong-yield-video" data-value="25">25s</i>).
                     <br>However, if we remove the NPC vehicle, the ego vehicle has the same motion before <i class="ts" data-target="wrong-yield-video" data-value="16.8">16s</i>,
                     but it can pass the collision region smoothly without stops, which can be seen from
                     <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#wrong-yield-modal">
                     this video
-                    </button>
+                    </button>.
                 </p>
 <!--                <p>-->
 <!--                    In the video, Apollo could have completed the turning smoothly by maintaining its speed.-->
@@ -354,7 +354,7 @@
             </div>
         </div>
         <div class="media">
-            <video width="50%" controls class="align-self-center mr-3">
+            <video id="wrong-switch-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/3-wrong-switch-from-yield-to-overtake-2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -363,12 +363,19 @@
                 <p>During the collision avoidance, the ego vehicle first yields to the NPC successfully.
                     However, Apollo starts to overtake before the NPC vehicle passes the collision region,
                     resulting in a collision.</p>
-                <p>In the video, Apollo first yielded to obstacle 4;
-                    However, it switched to the "<b>overtake</b>" decision and accelerated, which led to collision eventually.</p>
+                <p><b>Video description</b></p>
+                <p>The ego vehicle first yields to NPC vehicle 4 and stop completely (<i class="ts" data-target="wrong-switch-video" data-value="17">17s</i>).
+                    However, the ego vehicle restarts its motion quickly to overtake quickly,
+                    even though the NPC vehicle does not pass through the collision region (<i class="ts" data-target="wrong-switch-video" data-value="18">18s</i>).
+                    Hence, a collision occurs (<i class="ts" data-target="wrong-switch-video" data-value="21.5">21s</i>).
+                    In this case, since the ego vehicle has decided to yield to the NPC vehicle,
+                    it should stop to wait for the passing of the NPC vehicle.</p>
+<!--                <p>In the video, Apollo first yielded to obstacle 4;-->
+<!--                    However, it switched to the "<b>overtake</b>" decision and accelerated, which led to collision eventually.</p>-->
             </div>
         </div>
         <div class="media">
-            <video width="50%" controls class="align-self-center mr-3">
+            <video id="soft-braking-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/4-emergency-braking-too-soft.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -378,15 +385,22 @@
                     and the ego vehicle cannot overtake since another NPC is ahead,
                     Apollo still generates a gentle brake, rather than emergency braking.
                     If Apollo took complete braking, the ego vehicle would stop before causing a collision.</p>
-                <p>In the video, Apollo started to brake upon seeing the traffic moves.
-                    If it braked with full braking power, i.e. 100%, it could have stopped at 5 seconds' location (where its planned trajectory ended)
-                    ,without blocking obstacle 2's path.
-                However, the braking power reached a maximum of only 50% (see top right corner) at about 4 seconds.
-                This resulted in Apollo rushing into the traffic flow and collided with obstacle 2.</p>
+<!--                <p>In the video, Apollo started to brake upon seeing the traffic moves.-->
+<!--                    If it braked with full braking power, i.e. 100%, it could have stopped at 5 seconds' location (where its planned trajectory ended)-->
+<!--                    ,without blocking obstacle 2's path.-->
+<!--                However, the braking power reached a maximum of only 50% (see top right corner) at about 4 seconds.-->
+<!--                This resulted in Apollo rushing into the traffic flow and collided with obstacle 2.</p>-->
+                <p><b>Video description</b></p>
+                <p>The ego vehicle must brake immediately
+                    when the NPC vehicles starts their motion at around 2s (<i class="ts" data-target="soft-braking-video" data-value="3">3s</i>).
+                    However, the vehicle brakes too slightly by increasing the braking force slowly from 0 to a half
+                    of the maximal force and then remaining (<i class="ts" data-target="soft-braking-video" data-value="5.2">5s</i>).
+                    Thus, a collision occurs (<i class="ts" data-target="soft-braking-video" data-value="7">7s</i>).
+                    However, if the ego vehicle braked with the maximal braking force, it could avoid collisions.</p>
             </div>
         </div>
         <div class="media">
-            <video width="50%" controls class="align-self-center mr-3">
+            <video id="coordination-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/5-coordination.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -412,25 +426,40 @@
                 <h5 class="mt-0">E. lack of coordinated collision avoidance</h5>
                 <p>Apollo performs collision avoidance with each NPC vehicle independently,
                     so the ego vehicle may cause a deadlock with other vehicles or block the motion of other NPC vehicles. </p>
-                <p>In the video at 2 seconds, the decision was "<b>overtake</b>" for obstacle 2 (which makes Apollo accelerate)
-                    and "<b>follow behind</b>" for obstacle 3 (which makes Apollo decelerate).
-                    This made Apollo irresolute whose control output switched between accelerating and braking from 2 seconds to 4 seconds,
-                    and eventually Apollo drove into obstacle 2's path and collided with it.</p>
-                <p>If Apollo has coordinated or fused decisions across multiple obstacles, it could have made the "<b>yield</b>" decision to obstacle 2,
-                    considering the obstacle 3 was in front, and the collision could have been avoided.</p>
-                <p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#coordination-modal">
-                        Click Me
-                    </button> to view with one obstacle disabled.
+<!--                <p>In the video at 2 seconds, the decision was "<b>overtake</b>" for obstacle 2 (which makes Apollo accelerate)-->
+<!--                    and "<b>follow behind</b>" for obstacle 3 (which makes Apollo decelerate).-->
+<!--                    This made Apollo irresolute whose control output switched between accelerating and braking from 2 seconds to 4 seconds,-->
+<!--                    and eventually Apollo drove into obstacle 2's path and collided with it.</p>-->
+<!--                <p>If Apollo has coordinated or fused decisions across multiple obstacles, it could have made the "<b>yield</b>" decision to obstacle 2,-->
+<!--                    considering the obstacle 3 was in front, and the collision could have been avoided.</p>-->
+<!--                <p>-->
+<!--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#coordination-modal">-->
+<!--                        Click Me-->
+<!--                    </button> to view with one obstacle disabled.-->
+<!--                </p>-->
+                <p><b>Video description</b></p>
+                <p>First, the ego vehicle detects a vehicle in front,
+                    so needs to slow down its motion and follow the obstacle ahead (the green wall) (<i class="ts" data-target="coordination-video" data-value="2.8">2s</i>).
+                    Then, the ego vehicle detects another vehicle crossing the junction and determines to
+                    overtake by accelerating its motion;
+                    however, the ego vehicle finally slows down is motion (<i class="ts" data-target="coordination-video" data-value="3.5">3s</i>) and
+                    results in a collision (<i class="ts" data-target="coordination-video" data-value="5.5">5s</i>).
+                    In this case, the ego vehicle can pass through the collision region by overtaking and
+                    without causing a collision with the vehicle ahead since the vehicle ahead pass
+                    through the ego vehicle’s destination during the first 4 seconds.
+                    An example of overtaking is shown in
+                    <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#coordination-modal">
+                        this video
+                    </button>.
                 </p>
             </div>
         </div>
         <div class="media">
-            <video width="50%" controls class="align-self-center mr-3">
+            <video id="conflicts-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/6-decision-conflicts.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="modal fade" id="decision-conflicts-modal" tabindex="-1" aria-labelledby="decision-conflicts-modal-title" aria-hidden="true">
+            <div class="modal fade" id="conflicts-modal" tabindex="-1" aria-labelledby="decision-conflicts-modal-title" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -454,22 +483,27 @@
                     Meanwhile, Apollo needs to perform overtaking to avoid cut-in collisions.
                     In this case, the ego vehicle finally slows down its motion and causes a crash.
                 </p>
-                <p>In the video, Apollo needed to brake to not overshot the destination location;
-                    while it needs to accelerate to "<b>overtake</b>" obstacle 5.
-                    This decision conflicts resulted in Apollo switching between accelerating and braking from around 8 seconds to 13 seconds,
-                    and the eventual collision with obstacle 5.</p>
-                <p>Note that this issue is considered at a higher level than the issue above ("lack of coordinated collision avoidance"),
-                    because this issue is caused by inter-task conflicts (task "avoid collisions" and task "reach the destination"),
-                    while the issue above is intra-task conflicts (task "avoid collisions" only).</p>
-                <p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#decision-conflicts-modal">
-                        Click Me
-                    </button> to view with destination moved further away.
+<!--                <p>In the video, Apollo needed to brake to not overshot the destination location;-->
+<!--                    while it needs to accelerate to "<b>overtake</b>" obstacle 5.-->
+<!--                    This decision conflicts resulted in Apollo switching between accelerating and braking from around 8 seconds to 13 seconds,-->
+<!--                    and the eventual collision with obstacle 5.</p>-->
+<!--                <p>Note that this issue is considered at a higher level than the issue above ("lack of coordinated collision avoidance"),-->
+<!--                    because this issue is caused by inter-task conflicts (task "avoid collisions" and task "reach the destination"),-->
+<!--                    while the issue above is intra-task conflicts (task "avoid collisions" only).</p>-->
+                <p>In this video, when the ego vehicle is close to its destination, it should slow down;
+                    however, there is also an NPC vehicle approaching, triggering an overtaking action (<i class="ts" data-target="conflicts-video" data-value="8.8">8s</i>).
+                    Finally, the ego vehicle decides to slow down its speed (<i class="ts" data-target="conflicts-video" data-value="11.8">11s</i>)
+                    and cause a collision (<i class="ts" data-target="conflicts-video" data-value="13.4">13s</i>).
+                    However, in such a case, safety is the most important and has the highest priority,
+                    the ego vehicle is expected to accelerate its motion to avoid collisions, as shown in
+                    <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#conflicts-modal">
+                        this video
+                    </button>.
                 </p>
             </div>
         </div>
         <div class="media">
-            <video width="50%" controls class="align-self-center mr-3">
+            <video id="prediction-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/7-incorrect-prediction-2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -480,12 +514,19 @@
                     For example, due to the short prediction duration or prediction of low-speed vehicles as static ones,
                     Apollo cannot detect collision in time, resulting in a short distance to take collision avoidance actions.
                 </p>
-                <p>In the video, Apollo stopped to yield to obstacle 1 and obstacle 2.
-                    After they both crossed over and obstacle 5 approached,
-                    Apollo's prediction module failed to produce an prediction trajectory for obstacle 5,
-                    making Apollo's planning module believe that its path in front is clear.
-                    As a result, Apollo started to move forward and soon collided with obstacle 5.
-                </p>
+                <p><b>Video description</b></p>
+                <p>In this video, to avoid collisions with NCP vehicle 1 and 2,
+                    the ego vehicle stops its motion first (<i class="ts" data-target="prediction-video" data-value="20.2">20s</i>).
+                    When these two vehicles have been crossed,
+                    the ego vehicle cannot predict the motion of vehicle 5 and re-starts its motion (<i class="ts" data-target="prediction-video" data-value="21">21s</i>),
+                    resulting a collision (<i class="ts" data-target="prediction-video" data-value="23">23s</i>).
+                    Clearly, in this case, the ego vehicle should still wait for the passing of vehicle 5.</p>
+<!--                <p>In the video, Apollo stopped to yield to obstacle 1 and obstacle 2.-->
+<!--                    After they both crossed over and obstacle 5 approached,-->
+<!--                    Apollo's prediction module failed to produce an prediction trajectory for obstacle 5,-->
+<!--                    making Apollo's planning module believe that its path in front is clear.-->
+<!--                    As a result, Apollo started to move forward and soon collided with obstacle 5.-->
+<!--                </p>-->
             </div>
         </div>
         <div class="media">
@@ -499,9 +540,10 @@
                     When two NPC vehicles cause a collision, they may skid everywhere disorderly.
                     Hence, they may block, even collide with, the motion of the ego vehicle.
                     However, this should not be the responsibility of Apollo.</p>
+                <p><b>Video description</b></p>
                 <p>In the video, obstacle 2 had an collision with another obstacle in the junction after the test started.
                     This flipped the obstacle 2's 3D model over to an upside down posture.
-                    This made obstacle 2 to skid recklessly and collide with the approaching Apollo.s
+                    This made obstacle 2 to skid recklessly and collide with the approaching Apollo.
                 </p>
             </div>
         </div>
