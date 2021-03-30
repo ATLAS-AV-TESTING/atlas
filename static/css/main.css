@@ -63,3 +63,7 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.card-text {
+    font-size: 2rem;
+}
