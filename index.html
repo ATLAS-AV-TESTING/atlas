@@ -354,7 +354,7 @@
         </div>
         <div class="media">
             <video id="deadlock-video" width="50%" controls class="align-self-center mr-3">
-                <source src="static/media/issues_videos/deadlock-run3-random-jlg686-1.mp4"
+                <source src="static/media/issues_videos/deadlock-run15-ga-jlg1439-1.mp4"
                         type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -367,16 +367,16 @@
                 </p>
                 <p><b>Video description</b></p>
                 <p>
-                    After entering the junction (<i class="ts" data-target="deadlock-video" data-value="7">7s</i>),
-                    Apollo maintains its speed as the predicted path for NPC<sub>10005</sub> is also going straight.
-                    At <i class="ts" data-target="deadlock-video" data-value="9">9s</i> Apollo detects that NPC<sub>10005</sub>
-                    is turning left, it brakes immediately to avoid collision. The NPC<sub>10005</sub>, controlled by
-                    the LGSVL simulator, also decelerates timely
-                    (<i class="ts" data-target="deadlock-video" data-value="10">10s</i>).
-                    After both of them come to a complete stop, each blocks part of the other's driving lane
-                    (<i class="ts" data-target="deadlock-video" data-value="11">11s</i>).
-                    Since neither has implemented the deadlock recognition and resolution strategies, e.g. reversing
-                    or nudging from the side, they get trapped in the deadlock and jam the traffic forever.
+                    After entering the junction (<i class="ts" data-target="deadlock-video" data-value="3">3s</i>),
+                    Apollo yields to NPC<sub>10003</sub> by deceleration. When Apollo comes to a complete stop, it
+                    partially blocks NPC<sub>10000</sub>'s path
+                    (<i class="ts" data-target="deadlock-video" data-value="6">6s</i>). When NPC<sub>10000</sub> stops
+                    to avoid collision with Apollo, it happens to block NPC<sub>10004</sub>'s path
+                    (<i class="ts" data-target="deadlock-video" data-value="11">11s</i>). Eventually the three
+                    vehicles stop and block one another.
+                    Since neither Apollo nor NPC controller has implemented the deadlock recognition and resolution
+                    strategies, e.g. reversing or nudging from the side, they get trapped in the deadlock and jam the
+                    traffic forever.
                 </p>
             </div>
         </div>
@@ -412,9 +412,9 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">6) Planning Lag</h5>
+                <h5 class="mt-0">6) Planning Delay</h5>
                 <p>
-                    In four of the failed test cases, Apollo experiences short period of planning lag, where planning
+                    In four of the failed test cases, Apollo experiences short period of planning delay, where planning
                     module takes much longer to calculate the next trajectory. Sometimes Apollo collides with NPC
                     vehicles while following the old trajectory.
                 </p>
@@ -488,11 +488,11 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">9) Prediction Error</h5>
+                <h5 class="mt-0">9) Prediction Delay</h5>
                 <p>
-                    In this particular failed test case, Apollo's prediction module goes completely offline for a few
-                    seconds, which directly brings the planning module offline at the same time. Apollo's control module
-                    follows the old trajectory blindly and collides with crossing NPC vehicles.
+                    In this particular failed test case, Apollo's prediction module experiences a very long delay, which
+                    directly brings the planning module offline at the same time. Apollo's control module follows the
+                    old trajectory blindly and collides with crossing NPC vehicles.
                 </p>
                 <p><b>Video description</b></p>
                 <p>
