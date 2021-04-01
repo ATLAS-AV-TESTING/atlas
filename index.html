@@ -317,8 +317,10 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">3) Wrong Trajectory (a)</h5>
-                <p>In some situations, Apollo's planning module fails to produce an correct trajectory, resulting in
-                    collision with obstacles or getting stuck at sharp turns.</p>
+                <p>
+                    In some situations, Apollo's planning module produces incorrect trajectories that intersect with
+                    NPCs' path or fails to get out when it gets stuck at sharp junction turns.
+                </p>
                 <p><b>Video description</b></p>
                 <p>
                     When Apollo decides to yield to the crossing NPC vehicles at
@@ -338,8 +340,10 @@
             </video>
             <div class="media-body">
                 <h5 class="mt-0">3) Wrong Trajectory (b)</h5>
-                <p>In some situations, Apollo's planning module fails to produce an correct trajectory, resulting in
-                    collision with obstacles or getting stuck at sharp turns.</p>
+                <p>
+                    In some situations, Apollo's planning module produces incorrect trajectories that intersect with
+                    NPCs' path or fails to get out when it gets stuck at sharp junction turns.
+                </p>
                 <p><b>Video description</b></p>
                 <p>
                     The ego vehicle has the prior knowledge from the HD map files about the junction and the lanes
@@ -432,7 +436,10 @@
                     (<i class="ts" data-target="planning-lag-video" data-value="8.7">8s</i>).
                     Furthermore, the control module, without realizing the abnormal delay from the planning module,
                     follows the last trajectory it receives blindly and eventually collides with NPC<sub>10005</sub>
-                    (<i class="ts" data-target="planning-lag-video" data-value="9.3">9s</i>).
+                    (<i class="ts" data-target="planning-lag-video" data-value="9.3">9s</i>). <br>
+                    Based on our experiment results, when the planning module operates without delay, Apollo would soon
+                    changes its decision from overtaking to yielding to NPC<sub>10005</sub> and the collision would be
+                    avoided.
                 </p>
             </div>
         </div>
