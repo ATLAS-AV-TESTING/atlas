@@ -251,7 +251,7 @@
     <section class="container">
         <div class="row">
             <div class="col">
-                <h2>ISSUES DISCOVERED</h2>
+                <h2>APOLLO ISSUES DISCOVERED</h2>
                 <p>Note that when Apollo's bounding box (not 3D model) intersects with any obstacle's bounding box, a
                     <b>collision</b> occurs.
                     <br>The bounding box is a bit larger than Apollo's 3D model showing in the video (i.e. Apollo's
@@ -352,7 +352,6 @@
                 </p>
             </div>
         </div>
-
         <div class="media">
             <video id="deadlock-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/deadlock-run3-random-jlg686-1.mp4"
@@ -381,7 +380,6 @@
                 </p>
             </div>
         </div>
-
         <div class="media">
             <video id="wrong-prediction-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/wrong-prediction-run2-random-jlg688.mp4"
@@ -407,7 +405,6 @@
                 </p>
             </div>
         </div>
-
         <div class="media">
             <video id="planning-lag-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/planning-lag-run9-ga-jlg679.mp4"
@@ -437,7 +434,6 @@
                 </p>
             </div>
         </div>
-
         <div class="media">
             <video id="traffic-accidents-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/traffic-accidents-run5-random-jlg688-1.mp4"
@@ -461,7 +457,88 @@
                 </p>
             </div>
         </div>
+        <div class="media">
+            <video id="yield-to-overtake-video" width="50%" controls class="align-self-center mr-3">
+                <source src="static/media/issues_videos/yield-to-overtake-run17-random-jlg663.mp4"
+                        type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="media-body">
+                <h5 class="mt-0">8) Wrong Switch from Yielding to Overtaking</h5>
+                <p>
+                    In some cases, Apollo first yield then overtake the crossing NPC vehicles before they pass the
+                    collision region. This wrong switch of decision often results in collisions.
+                </p>
+                <p><b>Video description</b></p>
+                <p>
+                    At <i class="ts" data-target="yield-to-overtake-video" data-value="12">12s</i>, when the predicted
+                    trajectory of NPC<sub>10002</sub> first intersects the right boundary of Apollo's junction lane,
+                    Apollo first yields to NPC<sub>10002</sub>. Soon Apollo notices that the NPC<sub>10002</sub> is
+                    relatively slow (1.2m/s) and decides to overtake
+                    (<i class="ts" data-target="yield-to-overtake-video" data-value="13">13s</i>), which results in the
+                    collision later at <i class="ts" data-target="yield-to-overtake-video" data-value="21">21s</i>.
+                    Had Apollo maintained its yielding decision, the collision could have been avoided.
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <video id="prediction-error-video" width="50%" controls class="align-self-center mr-3">
+                <source src="static/media/issues_videos/prediction-error-run17-random-jlg676.mp4"
+                        type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="media-body">
+                <h5 class="mt-0">9) Prediction Error</h5>
+                <p>
+                    In this particular failed test case, Apollo's prediction module goes completely offline for a few
+                    seconds, which directly brings the planning module offline at the same time. Apollo's control module
+                    follows the old trajectory blindly and collides with crossing NPC vehicles.
+                </p>
+                <p><b>Video description</b></p>
+                <p>
+                    At <i class="ts" data-target="prediction-error-video" data-value="2">2s</i> when Apollo is
+                    approaching the junction, the prediction module suddenly goes offline and stops publishing
+                    prediction messages. Since the planning module strictly relies on the prediction message, it cannot
+                    calculate new trajectories any more. Then the control module does not notice this situation and
+                    follows the last planned trajectory it receives blindly, which results in the collision at
+                    <i class="ts" data-target="prediction-error-video" data-value="10">10s</i>.
+                </p>
+            </div>
+        </div>
     </section>
+<!--    <hr>-->
+<!--    <section class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col">-->
+<!--                <h2>SIMULATOR ISSUES DISCOVERED</h2>-->
+<!--                <p>-->
+<!--                    Simulator can also fail from time to time. In such test cases, Apollo would not be held responsible-->
+<!--                    if collisions or other traffic rule breaking involved.-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="media">-->
+<!--            <video id="soft-braking-video" width="50%" controls class="align-self-center mr-3">-->
+<!--                <source src="static/media/issues_videos/soft-braking-run12-ga-jlg1439.mp4" type="video/mp4">-->
+<!--                Your browser does not support the video tag.-->
+<!--            </video>-->
+<!--            <div class="media-body">-->
+<!--                <h5 class="mt-0">1) Soft Braking in Emergencies</h5>-->
+<!--                <p>Apollo's braking power is capped at 50% by default configuration. In some emergency situations,-->
+<!--                    e.g., where a stopped NPC vehicle suddenly crosses, the ego vehicle brakes too gently and collides-->
+<!--                    with the NPC. Those collisions could have been avoided with full braking power.</p>-->
+<!--                <p><b>Video description</b></p>-->
+<!--                <p>The ego vehicle must brake immediately-->
+<!--                    when the NPC vehicles start their motion at around-->
+<!--                    <i class="ts" data-target="soft-braking-video" data-value="2">2s</i>.-->
+<!--                    However, the ego brakes too softly capped at 50% of the maximal braking force.-->
+<!--                    Thus, a collision occurs at (<i class="ts" data-target="soft-braking-video" data-value="5">5s</i>).-->
+<!--                    Had the ego vehicle braked with 100% braking force, it could have stopped where-->
+<!--                    the planned trajectory ends (<i class="ts" data-target="soft-braking-video" data-value="4.3">5s</i>)-->
+<!--                    and avoided the collision.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 </div>
 
 
