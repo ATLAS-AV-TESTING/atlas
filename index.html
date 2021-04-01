@@ -506,7 +506,44 @@
             </div>
         </div>
     </section>
-<!--    -->
+
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h2>SIMULATOR ISSUES DISCOVERED</h2>
+                <p>
+                    The LGSVL simulator is still under rapid development and issues occur sometimes. Those issues
+                    causing collisions between NPC vehicles and Apollo are also recorded and analyzed, but Apollo is not
+                    held responsible for the collision.
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <video id="obstacle-failure-video" width="50%" controls class="align-self-center mr-3">
+                <source src="static/media/issues_videos/obstacle-failure-run2-ga-jlg1439.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="media-body">
+                <h5 class="mt-0">10) Traffic Light Sensor Failure</h5>
+                <p>
+                    The NPC controllers implemented in LGSVL simulator are relatively naive. When the NPCs gets knocked
+                    out of their designed path after a collision, the controllers cannot bring them back on track and
+                    often starts to drive randomly (what appears to be reckless driving).
+                </p>
+                <p><b>Video description</b></p>
+                <p>
+                    When Apollo is about to enter the junction at
+                    <i class="ts" data-target="obstacle-failure-video" data-value="3">3s</i>, NPC<sub>10005</sub> and
+                    NPC<sub>10001</sub> collides in the junction. Since the NPC controllers. This and subsequent
+                    collision on NPC<sub>10005</sub> push the vehicle far from its original path. This seems to confuse
+                    NPC<sub>10005</sub>'s controller and later it drivers towards the stopped Apollo and the collision
+                    occurs (<i class="ts" data-target="obstacle-failure-video" data-value="8.5">8s</i>). Although Apollo
+                    is involved in the collision, we don't not hold Apollo responsible for this.
+                </p>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 
