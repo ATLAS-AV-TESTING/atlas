@@ -416,9 +416,9 @@
             <div class="media-body">
                 <h5 class="mt-0">6) Planning Delay</h5>
                 <p>
-                    In four of the failed test cases, Apollo experiences short period of planning delay, where planning
-                    module takes much longer to calculate the next trajectory. Sometimes Apollo collides with NPC
-                    vehicles while following the old trajectory.
+                    During four of the failed test cases, Apollo's planning module suddenly gets stuck and stops
+                    producing publishing new trajectories. This is unlikely to be caused by overloaded hardware since
+                    the simulator as well as other Apollo modules are operating as usual.
                 </p>
                 <p><b>Video description</b></p>
                 <p>
@@ -427,7 +427,7 @@
                     After the faster NPC<sub>10001</sub> bypasses, Apollo decides to overtake the slower
                     NPC<sub>10005</sub> (<i class="ts" data-target="planning-lag-video" data-value="7">7s</i>).
                     However, after the "overtaking" trajectory is calculated and passed to the control module, the
-                    planning module gets stuck and stops publishing new trajectories (the lag being highlighted in red
+                    planning module gets stuck and stops publishing new trajectories (the delay being highlighted in red
                     at Dreamview's "Module Delay" monitor)
                     (<i class="ts" data-target="planning-lag-video" data-value="8.7">8s</i>).
                     Furthermore, the control module, without realizing the abnormal delay from the planning module,
