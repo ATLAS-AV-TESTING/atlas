@@ -316,10 +316,11 @@
                 Your browser does not support the video tag.
             </video>
             <div class="media-body">
-                <h5 class="mt-0">3) Wrong Trajectory (a)</h5>
+                <h5 class="mt-0">3) Wrong Intersecting Trajectory</h5>
                 <p>
                     In some situations, Apollo's planning module produces incorrect trajectories that intersect with
-                    NPCs' path or fails to get out when it gets stuck at sharp junction turns.
+                    NPCs' driving path. Collision is thus inevitable when the control module adheres to the planned
+                    trajectory.
                 </p>
                 <p><b>Video description</b></p>
                 <p>
@@ -333,30 +334,30 @@
                 </p>
             </div>
         </div>
-        <div class="media">
-            <video id="wrong-trajectory-b-video" width="50%" controls class="align-self-center mr-3">
-                <source src="static/media/issues_videos/wrong-trajectory-b-run4-ga-jlg1070.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="media-body">
-                <h5 class="mt-0">3) Wrong Trajectory (b)</h5>
-                <p>
-                    In some situations, Apollo's planning module produces incorrect trajectories that intersect with
-                    NPCs' path or fails to get out when it gets stuck at sharp junction turns.
-                </p>
-                <p><b>Video description</b></p>
-                <p>
-                    The ego vehicle has the prior knowledge from the HD map files about the junction and the lanes
-                    inside. It should know that the turn in the junction is relatively sharp. As a result, the planning
-                    and control module should work together to handle the sharp turn with more turning and slower speed,
-                    instead of getting stuck in the junction blocking the traffic
-                    (<i class="ts" data-target="wrong-trajectory-b-video" data-value="20">20s</i>).<br>
-                    Moreover, Apollo needs to detect when it is stuck and performs a fallback solution to get out of the
-                    situation, such as temporarily allowing itself to drive on top of the lane boundaries when it is
-                    safe (e.g. no other obstacles around).
-                </p>
-            </div>
-        </div>
+        <!--        <div class="media">-->
+        <!--            <video id="wrong-trajectory-b-video" width="50%" controls class="align-self-center mr-3">-->
+        <!--                <source src="static/media/issues_videos/wrong-trajectory-b-run4-ga-jlg1070.mp4" type="video/mp4">-->
+        <!--                Your browser does not support the video tag.-->
+        <!--            </video>-->
+        <!--            <div class="media-body">-->
+        <!--                <h5 class="mt-0">3) Wrong Trajectory (b)</h5>-->
+        <!--                <p>-->
+        <!--                    In some situations, Apollo's planning module produces incorrect trajectories that intersect with-->
+        <!--                    NPCs' path or fails to get out when it gets stuck at sharp junction turns.-->
+        <!--                </p>-->
+        <!--                <p><b>Video description</b></p>-->
+        <!--                <p>-->
+        <!--                    The ego vehicle has the prior knowledge from the HD map files about the junction and the lanes-->
+        <!--                    inside. It should know that the turn in the junction is relatively sharp. As a result, the planning-->
+        <!--                    and control module should work together to handle the sharp turn with more turning and slower speed,-->
+        <!--                    instead of getting stuck in the junction blocking the traffic-->
+        <!--                    (<i class="ts" data-target="wrong-trajectory-b-video" data-value="20">20s</i>).<br>-->
+        <!--                    Moreover, Apollo needs to detect when it is stuck and performs a fallback solution to get out of the-->
+        <!--                    situation, such as temporarily allowing itself to drive on top of the lane boundaries when it is-->
+        <!--                    safe (e.g. no other obstacles around).-->
+        <!--                </p>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="media">
             <video id="deadlock-video" width="50%" controls class="align-self-center mr-3">
                 <source src="static/media/issues_videos/deadlock-run15-ga-jlg1439-1.mp4"
