@@ -469,7 +469,7 @@
         </div>
         <div class="media">
             <video id="yield-to-overtake-video" width="50%" controls class="align-self-start mr-3">
-                <source src="static/media/issues_videos/yield-to-overtake-run12-random-jlg1066.mp4"
+                <source src="static/media/issues_videos/yield-to-overtake-run9-ga-jlg688.mp4"
                         type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -481,17 +481,16 @@
                 </p>
                 <p><b>Video description</b></p>
                 <p>
-                    Before Apollo enters the junction, it notices that NPC<sub>10001</sub> and NPC<sub>10004</sub> are
-                    crossing ahead (<i class="ts" data-target="yield-to-overtake-video" data-value="5">5s</i>). Apollo
-                    decides to yield and decelerates to a complete stop
-                    (<i class="ts" data-target="yield-to-overtake-video" data-value="7">7s</i>). Meanwhile, NPC<sub>10004</sub>
-                    also stops to yield to NPC<sub>10001</sub>
-                    (<i class="ts" data-target="yield-to-overtake-video" data-value="9">9s</i>). Seeing this, Apollo
-                    decides to overtake the stopped NPC<sub>10004</sub>, which leads to the collision later at
-                    <i class="ts" data-target="yield-to-overtake-video" data-value="16">16s</i>. <br>
-                    Since NPC<sub>10004</sub> yields to NPC<sub>10001</sub> instead of Apollo, Apollo should assume NPC
-                    <sub>10004</sub> will move again after NPC<sub>10001</sub> has crossed over and thus remain stopped
-                    to give way to NPC <sub>10004</sub>.
+                    When Apollo is about to turn left in the junction, it notices the approaching
+                    NPC<sub>10001</sub> from the opposite direction and decides to yield to it.
+                    (<i class="ts" data-target="yield-to-overtake-video" data-value="19">19s</i>). Then Apollo decides
+                    to overtake NPC<sub>10001</sub> as NPC<sub>10001</sub> is driving too slow
+                    (<i class="ts" data-target="yield-to-overtake-video" data-value="21">21s</i>). As
+                    NPC<sub>10001</sub> is approaching, Apollo switches its decision between "yielding" and "overtaking"
+                    many times (<i class="ts" data-target="yield-to-overtake-video" data-value="21">21s</i> ~
+                    <i class="ts" data-target="yield-to-overtake-video" data-value="23">23s</i>) This results in Apollo
+                    not being able to accelerate sufficiently and eventually stopping in NPC<sub>10001</sub>'s driving
+                    lane.
                 </p>
             </div>
         </div>
