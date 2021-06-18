@@ -21,11 +21,45 @@
 
     <section class="container">
         <div class="row">
-            <h2>Testing Flowchart</h2>
+            <h2>Flowchart of ATLAS</h2>
         </div>
         <div class="row mb-5">
             <div class="col d-flex flex-row justify-content-center">
                 <img src="static/media/atlas-diagram-ase-nier.svg" alt="ATLAS TESTING FLOWCHART" width="100%">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ul>
+                    <li class="mb-3"><strong>HD Map</strong> HD Map contains the essential information of the elements
+                        in the traffic
+                        network, e.g. traffic lanes, roads and junctions. Currently there are two main format, <a
+                                href="https://www.asam.net/standards/detail/opendrive/">OpenDRIVE</a> and
+                        <a href="https://www.mrt.kit.edu/z/publ/download/2018/Poggenhans2018Lanelet2.pdf">Lanelet 2</a>.
+                        Apollo HD maps are customized version of the OpenDRIVE specification, saved in binary form using
+                        <a href="https://developers.google.com/protocol-buffers">Protobuf</a> tools.
+                        ATLAS parses the binary files directly.
+                    </li>
+                    <li class="mb-3"><strong>Junction Lane Classification</strong> After the lanes, roads and junction
+                        information
+                        are extracted from HD map files. ATLAS gathers all the junction lanes and calculates their
+                        topology feature characteristics, and based on which, classify them into different junction lane
+                        classes (<a href="#diagram-container">see diagram</a>). Then ATLAS samples one lane from each
+                        junction lane class for generating test cases.
+                    </li>
+                    <li class="mb-3"><strong>Test Case Generation</strong> For each selected junction lane, the
+                        parameters such as
+                        distance and speed are determined based on the specific scenario on the junction lane. the
+                        number of NPCs and their respective locations are initialized. Then ATLAS applies Genetic
+                        Algorithm to search through the parameter space towards potential collision test cases, with
+                        fitness feedback.
+                    </li>
+                    <li class="mb-3"><strong>Simulation Environment</strong> ATLAS is evaluated on Baidu Apollo 6.0 and
+                        LGSVL
+                        Simulator (2020.06). ATLAS communicates with Apollo and Simulator through socket connection
+                        during test case execution.
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -141,7 +175,7 @@
         </div>
     </section>
 
-    <section class="container">
+    <section class="container" id="diagram-container">
         <div class="row">
             <h2>Junction Lane Class Topology Diagram</h2>
         </div>
